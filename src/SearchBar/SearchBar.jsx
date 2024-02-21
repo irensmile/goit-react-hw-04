@@ -1,9 +1,12 @@
-import css from './SearchBar.module.css';
+import css from "./SearchBar.module.css";
+import toast, { Toaster } from "react-hot-toast";
 
 export const SearchBar = ({ onSubmit }) => {
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(e.target[0].value);
+    const value = e.target[0].value;
+    if (value) onSubmit(e.target[0].value);
+    else toast("Please enter search query first");
   };
 
   return (
@@ -20,6 +23,7 @@ export const SearchBar = ({ onSubmit }) => {
           Search
         </button>
       </form>
+      <Toaster />
     </header>
   );
 };
